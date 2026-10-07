@@ -1,0 +1,27 @@
+[profile.default]
+solc_version = "0.8.24"
+emv_version = "cancun"
+src = 'src'
+out = 'out'
+libs = ['node_modules']
+
+
+# Compile only the production code and the test mocks with via IR
+[profile.optimized]
+  out = "out-optimized"
+  via_ir = true
+
+[fmt]
+bracket_spacing = true
+line_length = 140
+multiline_func_header = "all"
+number_underscore="thousands"
+
+[doc]
+title = "Rhinestone Registry"
+ignore = ["src/DataTypes.sol", "src/Common.sol", "src/external"]
+
+[invariant]
+# fail_on_revert = true
+runs = 1200
+depth = 20

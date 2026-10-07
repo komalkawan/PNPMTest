@@ -1,0 +1,63 @@
+{
+  "name": "@rhinestone/registry",
+  "version": "1.0.0",
+  "description": "An Attestation Registry for securely using Smart Account Modules",
+  "license": "GPL-3.0",
+  "author": {
+    "name": "Rhinestone",
+    "url": "https://www.rhinestone.dev"
+  },
+  "scripts": {
+    "build": "forge build",
+    "build:optimized": "FOUNDRY_PROFILE=optimized forge build",
+    "build:smt": "FOUNDRY_PROFILE=smt forge build",
+    "clean": "rm -rf artifacts broadcast cache docs out out-optimized out-svg",
+    "gas:report": "forge test --gas-report --mp \"./test/integration/**/*.sol\" --nmt \"test(Fuzz)?_RevertWhen_\\w{1,}?\"",
+    "gas:snapshot": "forge snapshot --mp \"./test/integration/**/*.sol\" --nmt \"test(Fuzz)?_RevertWhen_\\w{1,}?\"",
+    "gas:snapshot:optimized": "pnpm run build:optimized && FOUNDRY_PROFILE=test-optimized forge snapshot --mp \"./test/integration/**/*.sol\" --nmt \"test(Fork)?(Fuzz)?_RevertWhen_\\w{1,}?\"",
+    "lint:sol": "forge fmt --check && pnpm solhint \"{script,src,test}/**/*.sol\"",
+    "prepack": "pnpm install",
+    "test": "forge test",
+    "test:lite": "FOUNDRY_PROFILE=lite forge test",
+    "test:optimized": "pnpm run build:optimized && FOUNDRY_PROFILE=test-optimized forge test",
+    "build:docs": "forge doc && cd ./docs && rm -rf ./src/src/DataTypes.sol; mdbook build && cd ..",
+    "natspec": "natspec-smells",
+    "spellcheck": "cspell '**'"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.0.1",
+    "solady": "github:vectorized/solady#9deb9ed36a27261a8745db5b7cd7f4cdc3b1cd4e",
+    "forge-std": "github:foundry-rs/forge-std#v1.7.6"
+  },
+  "devDependencies": {
+    "@defi-wonderland/natspec-smells": "^1.1.1",
+    "cspell": "^8.6.0",
+    "ds-test": "github:dapphub/ds-test#e282159d5170298eb2455a6c05280ab5a73a4ef0",
+    "solhint": "^4.5.2",
+    "solmate": "github:transmissions11/solmate#c892309933b25c03d32b1b0d674df7ae292ba925",
+    "@rhinestone/erc4337-validation": "github:rhinestonewtf/erc4337-validation#v0.0.1-alpha.5"
+  },
+  "files": [
+    "src",
+    "artifacts",
+    "foundry.toml",
+    "remappings.txt"
+  ],
+  "homepage": "https://github.com/rhinestonewtf/registry/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhinestonewtf/registry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rhinestonewtf/registry/issues"
+  },
+  "keywords": [
+    "account abstraction",
+    "smart account modules",
+    "registry",
+    "smart account security"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
